@@ -16,7 +16,7 @@
 
     //$filecount = $filecount++;
     
-    $target_dir ="upload_file/product_photo/";
+    $target_dir ='upload_file/product_photo/';
     
     //echo "2"."</br>";
     for ($i = 0; $i < $filecount; $i++) {
@@ -76,10 +76,13 @@
                     
                     //將檔案移到指定位置
                     move_uploaded_file($file, $dest);
-                    $newfilename=$randomString."."."jpg";         //設定新的檔名加上.jpg
+                    //echo 'file'.$file.'.'.'<br>';
+                    //echo 'dest'.$dest.'.'.'<br>';
+                    $newfilename=$randomString.'.'.'jpg';         //設定新的檔名加上.jpg
                     rename($dest,$target_dir.$newfilename);        
                     //$dest事先抓取舊檔名,$target_dirg是指新檔案的位置在哪然後取($newfilename)檔名
-                    
+                    //echo '$target_dir'.$target_dir.'.'.'<br>';
+                    //echo '$newfilename'.$newfilename.'.'.'<br>';
                     //header("location:management.php");
                     $sql_insert = "INSERT INTO photo (product_id, product_photo_name) VALUES ('$product_id', '$newfilename')";
                     $result = $conn->query($sql_insert) or die('MySQL insert error');

@@ -13,7 +13,7 @@ $image="";
     
     $_SESSION["check_code"]=$code;
 
-    $image = imagecreate($width, $hight);
+    $image = imagecreatetruecolor($width, $hight);
     $white = imagecolorallocate($image, 255, 255, 255);
     $black = imagecolorallocate($image, 0, 0, 255);
     $gray  = imagecolorallocate($image,200,200,200); 

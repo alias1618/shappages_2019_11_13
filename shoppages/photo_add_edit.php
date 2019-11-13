@@ -65,7 +65,7 @@
     		<input type="hidden" name="product_id" id="product_id" value="<?php echo $product_id;?>">
     		上傳圖片<br>
     		<br>
-    		選擇檔案一	<input type="file" name="file_upload[]" multiple id="file_upload"><br>
+    		選擇檔案一	<input type="file" name="file_upload[]"  id="file_upload"><br>
     		<br>
     		<!-- 
     		選擇檔案二	<input type="file" name="file_upload[]" multiple id="file_upload"><br>
