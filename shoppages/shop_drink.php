@@ -91,7 +91,7 @@
                     <div class="carousel-inner" role="listbox">
           		<?php 
           		$counter=0;
-    		$sql_query03 = "SELECT * FROM product WHERE product_category_id = 1 AND product_status_id != 3 ORDER BY RAND() LIMIT 10 ";
+    		$sql_query03 = "SELECT * FROM product WHERE product_category_id = 2 AND product_status_id != 3 ORDER BY RAND() LIMIT 10 ";
     		$result03 = $conn->query($sql_query03) or die("MySQL query error135");
     		while($row03 = mysqli_fetch_array($result03)){
 		    $product_id = $row03["product_id"];
@@ -141,7 +141,7 @@
 
         <div class="row">
 			<?php
-			$sql ="SELECT * FROM product WHERE product_category_id = 1 AND product_status_id != 3 ";
+			$sql ="SELECT * FROM product WHERE product_category_id = 2 AND product_status_id != 3 ";
 			$result_001 = $conn->query($sql) or die("MySQL query error");
 			
 			$data_nums = mysqli_num_rows($result_001);   //統計總比數
@@ -159,7 +159,7 @@
 			//echo '$start'.$start.'<br>';
 			//echo '$per'.$per.'<br>';
 			
-			$sql_query01 = "SELECT * FROM product WHERE product_category_id = 1 AND product_status_id != 3"; //!=
+			$sql_query01 = "SELECT * FROM product WHERE product_category_id = 2 AND product_status_id != 3"; //!=
 			mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
 			$result01 = $conn->query($sql_query01.' LIMIT '.$start.', '.$per) or die("MySQL query error135");
 			while($row01 = mysqli_fetch_array($result01)){

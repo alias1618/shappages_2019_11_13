@@ -68,9 +68,9 @@
       <div class="col-lg-3">
         <h1 class="my-4">食品</h1>
         <div class="list-group">
-          <a href="#" class="list-group-item active">罐頭食品</a>
-        <!--  <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a> --> 
+          <a href="index.php" class="list-group-item">罐頭食品</a>
+         <a href="shop_drink.php" class="list-group-item">飲料</a>
+         <!--  <a href="#" class="list-group-item">Category 3</a> --> 
         </div>
       </div>
       <!-- /.col-lg-3 -->
@@ -92,6 +92,7 @@
 		$product_number = $row01["product_number"];
 		$product_price = $row01["product_price"];
 		$product_describe = $row01["product_describe"];
+		$product_category_id = $row01["product_category_id"];
 		
 		$showimage01="<img src=upload_file/product_photo/";
 		$sql_query02 = "SELECT * FROM photo WHERE product_id = '$product_id'";
@@ -143,7 +144,90 @@
 	}
 	?>	
 	
-	
+
+    	<?php //}?>
+    	
+         <!-- <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Item Two</a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Item Three</a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Item Four</a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Item Five</a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Item Six</a>
+                </h4>
+                <h5>$24.99</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>  -->
+
+        </div>
         <!--  <div class="card card-outline-secondary my-4">
           <div class="card-header">
             Product Reviews
@@ -167,7 +251,49 @@
       <!-- /.col-lg-9 -->
 
     </div>
+    <br>
+    <br>
+	        <div class="row justify-content-center ">
+			<?php
 
+			$sql_query_003 = "SELECT * FROM product WHERE product_id !=$product_id AND product_category_id=$product_category_id AND product_status_id != 3 ORDER BY RAND() LIMIT 5 ";
+			$result_003 = $conn->query($sql_query_003) or die("MySQL query error135");
+			while($row_003 = mysqli_fetch_array($result_003)){
+			    $product_id_003 = $row_003["product_id"];
+			    $product_name_003 = $row_003["product_name"];
+			    $product_price_003 = $row_003["product_price"];
+			    
+			    $showimage01="<img src=upload_file/product_photo/";
+			    $sql_query_004 = "SELECT * FROM photo WHERE product_id = '$product_id_003' LIMIT 1";
+			    $result_004 = $conn->query($sql_query_004) or die("MySQL query error");
+			    while ($row_004 = mysqli_fetch_array($result_004)){
+			        $product_photo_name_004 = $row_004['product_photo_name'];	
+			
+   
+    	       	?>
+    	       	
+          <div class="col-lg-2 col-md-2 mb-2 ">
+            <div class="card h-100 w-100 border-0">
+
+ 
+              <div class="card-body ">
+				  <a href="shop_detail.php?product_id='<?php echo $product_id_003;?>'"><img class="card-img-top" <?php   echo $showimage01.$product_photo_name_004;?> style="width:40%; display:block; margin:auto;"  alt=""></a>                   		
+                <!-- card-title -->
+                <br>
+                  <h6 class="card-text" align="center"><a href="#" ><?php echo '<a href="shop_detail.php?product_id=',$product_id_003,  '">', $product_name_003, '</a>';?></a></h6>
+                <!--  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>-->
+              </div>
+              <div class="card-footer border-0 bg-white" >
+
+              	<h6 align="center"><?php echo $product_price_003;?>元</h6>
+                  <!--  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>-->
+              </div>
+            </div>
+          </div>
+<?php 
+            		    }
+            		 }
+?>
   </div>
   <!-- /.container -->
 
