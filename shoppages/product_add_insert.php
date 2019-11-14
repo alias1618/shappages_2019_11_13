@@ -5,16 +5,16 @@ mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
 $product_name = $_POST['product_name'];
 $product_number = $_POST['product_number'];
 $product_price = $_POST['product_price'];
-
 $product_describe = $_POST['product_describe'];
+$product_type = $_POST['product_type'];
 
 //$product_describe = preg_replace("\n", "<br/>", $product_describe); 
 $product_status_id ="1";
 
-$sql_insert = "INSERT INTO product  (product_name, product_number, product_price, product_describe, product_status_id) 
-                           VALUES('$product_name', '$product_number', '$product_price' ,'$product_describe', '$product_status_id')";
+$sql_insert = "INSERT INTO product  (product_name, product_number, product_price, product_describe, product_status_id, product_category_id) 
+                           VALUES('$product_name', '$product_number', '$product_price' ,'$product_describe', '$product_status_id', '$product_type')";
 mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
-$result01 = $conn->query($sql_insert) or die('MySQL insert error');
+$result01 = $conn->query($sql_insert) or die('MySQL insert error_17');
 //mysqli_close($conn);//關閉資料庫
 
 $sql_query = "SELECT product_id FROM product WHERE product_name='$product_name' AND product_number='$product_number' AND product_price='$product_price'";
@@ -94,7 +94,7 @@ for ($i = 0; $i < $filecount; $i++){
                 
                 //header("location:management.php");
                 $sql_insert = "INSERT INTO photo (product_id, product_photo_name) VALUES ('$product_id', '$newfilename')";
-                $result = $conn->query($sql_insert) or die('MySQL insert error');
+                $result = $conn->query($sql_insert) or die('MySQL insert error_97');
                 //mysqli_close($conn);
                 echo "上傳完成"."$i";
                 header("location:management.php");

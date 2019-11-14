@@ -12,7 +12,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Bare - Start Bootstrap Template</title>
+  <title>商品資料修改</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -78,6 +78,7 @@
         $product_number = $row["product_number"];
         $product_price = $row["product_price"];
         $product_describe = $row["product_describe"];
+        $product_category_id = $row["product_category_id"];
     ?>
         <form action="product_edit_update.php" method="post">
         	<input type="hidden" name="product_id" id="product_id" value="<?php echo $product_id;?>">
@@ -89,6 +90,17 @@
         	<br>
         	商品價格
         	<input type="number" name="product_price" id="product_price" value="<?php echo $product_price;?>"><br>
+        	<br>
+        	商品類別
+        	<select name="product_category_id" id="product_category_id" >
+        		<option <?php if ($product_category_id == '0') echo 'selected' ; ?> value="0"></option>
+        		<option <?php if ($product_category_id == '1') echo 'selected' ; ?> value="1">罐頭</option>
+        		<option <?php if ($product_category_id == '2') echo 'selected' ; ?> value="2">飲料</option>
+        		<option <?php if ($product_category_id == '3') echo 'selected' ; ?> value="3">零食</option>
+        		<option <?php if ($product_category_id == '4') echo 'selected' ; ?> value="4">醬料</option>
+        		<option <?php if ($product_category_id == '5') echo 'selected' ; ?> value="5">冷凍食品</option>
+        	</select>
+        	<br>
         	<br>
         	商品描述
         	<br>

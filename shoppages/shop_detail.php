@@ -142,6 +142,8 @@
 		
 	}
 	?>	
+	
+	
         <!--  <div class="card card-outline-secondary my-4">
           <div class="card-header">
             Product Reviews

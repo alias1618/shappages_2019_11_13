@@ -75,6 +75,17 @@
         	商品價格
         	<input type="number" name="product_price" id="product_price" placeholder=""><br>
         	<br>
+        	商品類別
+        	<select name="product_type" id="product_type" >
+        		<option value="0"></option>
+        		<option value="1">罐頭</option>
+        		<option value="2">飲料</option>
+        		<option value="3">零食</option>
+        		<option value="4">醬料</option>
+        		<option value="5">冷凍食品</option>
+        	</select>
+        	<br>
+        	<br>
         	<label>商品描述</label><br>
         	<br>
         	<textarea type="text" name="product_describe" id="product_describe" rows="10" cols="60"></textarea><br>

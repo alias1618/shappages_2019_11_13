@@ -63,6 +63,7 @@
 			<tr>
 				<td align="center">編號</td>
 				<td align="center">名稱</td>
+				<td align="center">商品類別</td>
 				<td align="center">庫存數量</td>
 				<td align="center">定價</td>
 				<td align="center">描述</td>
@@ -84,11 +85,27 @@
 			    $product_number = $row01["product_number"];
 			    $product_price = $row01["product_price"];
 			    $product_describe = $row01["product_describe"];
+			    $product_category_id = $row01["product_category_id"];
 			
             ?>
             <tr>
                 <td><?php echo "00000".$product_id;?></td>	<!-- 顯示商品id -->
                 <td><?php echo $product_name;?></td>	<!-- 顯示商品名稱 -->
+                <td><?php if($product_category_id == 0){
+                    echo "";
+                }else if($product_category_id == 1){
+                    echo "罐頭";
+                }else if($product_category_id == 2){
+                    echo "飲料";
+                }else if($product_category_id == 3){
+                    echo "零食";
+                }else if($product_category_id == 4){
+                    echo "醬料";
+                }else if($product_category_id == 5){
+                    echo "冷凍食品";
+                }
+                ?>
+                </td>	<!-- 顯示商品名稱 -->                
                 <td><?php echo $product_number;?></td>	<!-- 顯示商品數量 -->
                 <td><?php echo $product_price;?></td>	<!-- 顯示商品價格 -->
                 <td><?php echo nl2br($product_describe);?></td>	<!-- 顯示商品描述 -->
