@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>訂單管理</title>
+  <title>客服管理</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,59 +26,68 @@
 		<table border="1">
 			<tr>
 				<td align="center">編號</td>
-				<td align="center">購買日期</td>
-				<td align="center">收件人</td>
-				<td align="center">收件人地址</td>
-				<td align="center">收件人電話</td>
+				<td align="center">日期</td>
+				<td align="center">姓名</td>
+				<td align="center">電話</td>
+				<td align="center">Email</td>
+				<td align="center">郵遞區號</td>
+				<td align="center">地址</td>
+				<!-- 
 				<td align="center">訂單總金額</td>
 				<td align="center">訂購人</td>
 				<td align="center">訂購人電話</td>
+				 -->
 				<!--<td align="center">修改訂單</td>-->
 				<!--<td align="center">取消訂單</td>-->
-				<td align="center">訂單明細</td>
+				<td align="center">問題明細</td>
 				<!--<form action="order_delete.php" method="post">->
 				<!--  <td>取消訂單<input type=submit value=取消訂單 ></td>-->
 			</tr>
 			<?php
 
-			$sql_query01 = "SELECT * FROM buy";
+			$sql_query01 = "SELECT * FROM customer_form";
 			mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
 			$result01 = $conn->query($sql_query01) or die("MySQL query error");
 			while($row01 = mysqli_fetch_array($result01)){
-			    $buy_id = $row01["buy_id"];
-			    $buy_name = $row01["buy_name"];
-			    $buy_date = $row01["buy_date"];
+			    $customer_form_id = $row01["customer_form_id"];
+			    $customer_form_time = $row01["customer_form_time"];
+			    $user_id = $row01["user_id"];
+			    /*
 			    $buy_add = $row01["buy_add"];
 			    $buy_phone = $row01["buy_phone"];
 			    $buy_money = $row01["buy_money"];
-			
+			     */
 			    
-			    $sql_query02 = "SELECT b.buy_id, b.buy_name, b.buy_date, b.buy_phone, b.buy_add, u.user_name, u.user_phone FROM buy b inner join user u on b.user_id = u.user_id WHERE buy_id='$buy_id'";
+			    $sql_query02 = "SELECT * FROM user WHERE user_id='$user_id'";
 			    mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
 			    $result02 = $conn->query($sql_query02) or die("MySQL query error");
 			    while($row02 = mysqli_fetch_array($result02)){
 			        $user_name = $row02['user_name'];
 			        $user_phone = $row02['user_phone'];
+			        $user_email = $row02['user_email'];
+			        $user_postcode = $row02['user_postcode'];
+			        $user_add = $row02['user_add'];
+			        
 			    }
 
             ?>
             <tr>
-                <td align="center"><?php echo $buy_id;?></td>	<!-- 顯示商品id -->
-                <td align="center"><?php echo $buy_date;?></td>	<!-- 顯示商品名稱 -->
-                <td align="center"><?php echo $buy_name;?></td>	<!-- 顯示商品數量 -->
-                <td align="center"><?php echo $buy_add;?></td>	<!-- 顯示商品價格 -->
-                <td align="center"><?php echo $buy_phone;?></td>	<!-- 顯示商品描述 -->
-               	<td align="center"><?php echo $buy_money;?> </td>
-               	<td align="center"><?php echo $user_name;?> </td>
-               	<td align="center"><?php echo $user_phone;?> </td>
+                <td align="center"><?php echo $customer_form_id;?></td>	<!-- 顯示商品id -->
+                <td align="center"><?php echo $customer_form_time;?></td>	<!-- 顯示商品名稱 -->
+                <td align="center"><?php echo $user_name;?></td>	<!-- 顯示商品數量 -->
+                <td align="center"><?php echo $user_phone;?></td>	<!-- 顯示商品價格 -->
+                <td align="center"><?php echo $user_email;?></td>	<!-- 顯示商品描述 -->
+               	<td align="center"><?php echo $user_postcode;?> </td>
+               	<td align="center"><?php echo $user_add;?> </td>
+               	<!--  <td align="center"><?php //echo $user_phone;?> </td>-->
 		
                
                 
                 <!--  <td><a href="order_edit.php?buy_id=<?php //echo $buy_id;?>">修改訂單</a></td>-->
                <!-- <td><a href="order_delete.php?buy_id=<?php //echo $buy_id;?>">取消訂單</a></td>-->
-                 <td><a href="order_detail_management.php?buy_id=<?php echo $buy_id;?>">訂單明細</a></td>               
+                 <td><a href="customer_management_detail.php?customer_form_id=<?php echo $customer_form_id;?>">問題明細</a></td>               
      <!--            <td><label><input type="checkbox"  name="ship_status_id[]" value="<?php //echo $buy_id;?>" <?php //if($ship_status_id == "5") echo("checked")?>> 取消訂單</label>--> 
-				<input type="hidden" id="buy_id" name="buy_id" value="<?php echo $buy_id;?>">	</td>
+				<!--  <input type="hidden" id="buy_id" name="buy_id" value="<?php //echo $buy_id;?>">	</td>-->
             </tr>
             <?php }?>
 		</table>
