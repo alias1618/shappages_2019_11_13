@@ -23,12 +23,13 @@ include("menu.php");
 
 require_once("connect_db.php");
 header("Content-Type:text/html; charset=utf-8");
-
+/*
 if(empty($_SESSION['user_id'])){
     //echo "<script>checklogin();</script>";
     echo "<script>window.location.href='index.php';alert('請先登入');</script>";
 }
 $user_id = $_SESSION['user_id'];
+*/
 ?>
  	<!-- <input type=button value="回到管理頁面" onclick="location.href='management.php'"></input> -->
   <!-- Page Content -->
@@ -45,38 +46,27 @@ $user_id = $_SESSION['user_id'];
     </div>
   </div>
  
-        <form action="customer_form_insert.php" method="post" >
+        <form action="send.php" method="post" >
         <!--<input type="hidden" name="id" value="<?php //echo $user_id?>" />-->
+        <div align="center">
         
-        <!--
-        	姓名
-        	<input type="text" name="product_name" id="product_name" placeholder=""><br>
+        	<label>姓名</label>
+        	<br>
+        	<input id="C_name" name="C_name" type="text" /></input><br>
         	<br>
         	  
-        	商品數量
-        	<input type="number" name="product_number" id="product_number" placeholder=""><br>
+        	<label>您的Email</label>
         	<br>
-        	商品價格
-        	<input type="number" name="product_price" id="product_price" placeholder=""><br>
+        	<input id="C_email" name="C_email" type="text" /></input><br>
         	<br>
-        	-->
-        	<!--  
-        	商品類別
-        	<select name="product_type" id="product_type" >
-        		<option value="0"></option>
-        		<option value="1">罐頭</option>
-        		<option value="2">飲料</option>
-        		<option value="3">零食</option>
-        		<option value="4">醬料</option>
-        		<option value="5">冷凍食品</option>
-        	</select>
+        	<label>您的電話號碼</label>
         	<br>
+        	<input id="C_tel" name="C_tel" type="text" /></input>
         	<br>
-        	-->
-        	<div align="center">
+
         	<label>問題描述</label><br>
         	<br>
-        	<textarea type="text" name="question_describe" id="question_describe" rows="10" cols="60" ></textarea><br>
+        	<textarea id="C_message" name="C_message" rows="10" cols="60" ></textarea><br>
         	<!--  
     		選擇檔案一	<input type="file" name="file_upload[]" multiple id="file_upload"><br>
     		-->

@@ -95,6 +95,7 @@ if (($username != "") && ($password != "")) {
            // echo '$user_id'.$user_id;
             $sql_insert_result_01 = $conn->query($sql_insert_01) or die('MySQL insert error_90');
             //echo 97;
+            
         }else if($session_id == $db_session_id){    //有登入過而且同樣的session_id
             $sql_update = "UPDATE login_data SET session_id='$session_id', login_time='$time', user_id='$user_id'";
             $sql_update_result = $conn->query($sql_update) or die('MySQL update error');
