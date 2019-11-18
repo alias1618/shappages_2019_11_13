@@ -4,6 +4,8 @@
 <head>
 <?php 
 session_start();
+ini_set('session.cookie_lifetime', 0);
+ini_set('session.gc_maxlifetime', 3600);
 ?>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,15 +22,14 @@ session_start();
 <body>
 <?php 
 include("menu.php");
-?>
 
-<?php 
 require_once ('connect_db.php');
  //$user_id=$_SESSION['user_id'];
 if(isset($_SESSION['user_id'])){
     //echo "<script>checklogin();</script>";
     echo "<script>window.location.href='index.php';alert('登入過了');</script>";
 }
+
 ?>
   <!-- Page Content -->
   <div class="container">
