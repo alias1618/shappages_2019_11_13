@@ -18,7 +18,8 @@
 <body>
 
  <?php 
- session_start();
+ include('session_check.php');
+ //session_start();
 include("menu.php");
 ?>
   <p align="center">結帳</p>
@@ -38,7 +39,7 @@ include("menu.php");
      <div id=product_table>
 	<form action="check_type.php" method="post" onsubmit="return checknumber();">
     <?php 
-    require_once ('connect_db.php');
+    //require_once ('connect_db.php');
     
     if(!isset($_SESSION['user_id'])){
         //echo "<script>checklogin();</script>";

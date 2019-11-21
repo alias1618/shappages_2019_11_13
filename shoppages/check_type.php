@@ -74,7 +74,8 @@
 <body>
 
  <?php 
-include("menu.php");
+ include('session_check.php');
+ include("menu.php");
 ?>
 
   <!-- Page Content -->

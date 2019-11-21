@@ -6,9 +6,9 @@
 	    <body>
 <?php
 header("Content-Type:text/html; charset=utf-8");    //讓mysql顯示中文而不是亂碼
-
-session_start();
-require_once("connect_db.php");  
+include('session_check.php');
+//session_start();
+//require_once("connect_db.php");  
 $buy_id=$_SESSION['buy_id'];
 //需要buy_id
 //需要product_id

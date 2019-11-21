@@ -3,7 +3,8 @@
 
 <head>
 <?php 
-session_start();
+//session_start();
+include('session_check.php');
 ?>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,7 +22,7 @@ session_start();
     <?php 
     include("menu.php");
 
-		  require_once("connect_db.php");
+		  //require_once("connect_db.php");
 		  header("Content-Type:text/html; charset=utf-8");
 		  
 		  if(empty($_SESSION['user_id'])){

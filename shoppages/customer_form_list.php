@@ -17,46 +17,52 @@
 
 <body>
 <?php 
-          include("menu_management.php");
-		  require_once("connect_db.php");
+          include("menu.php");
+          include('session_check.php');
+		  //require_once("connect_db.php");
 		  header("Content-Type:text/html; charset=utf-8");    //讓mysql顯示中文而不是亂碼
+		  $user_id = $_SESSION['user_id'];
 		?>
 		<br>
 		<table border="1">
 			<tr>
-				<td align="center">編號</td>
+				<!-- <td align="center">編號</td>-->
 				<td align="center">日期</td>
+				<!--  
 				<td align="center">姓名</td>
 				<td align="center">電話</td>
 				<td align="center">Email</td>
+				
 				<td align="center">郵遞區號</td>
 				<td align="center">地址</td>
+				-->
 				<!-- 
 				<td align="center">訂單總金額</td>
 				<td align="center">訂購人</td>
 				<td align="center">訂購人電話</td>
 				 -->
 				<!--<td align="center">修改訂單</td>-->
-				<!--<td align="center">取消訂單</td>-->
+				<td align="center">問題</td>
 				<td align="center">問題明細</td>
 				<!--<form action="order_delete.php" method="post">->
 				<!--  <td>取消訂單<input type=submit value=取消訂單 ></td>-->
 			</tr>
 			<?php
 
-			$sql_query01 = "SELECT * FROM customer_form";
+			$sql_query01 = "SELECT * FROM customer_form WHERE user_id = '$user_id'";
 			mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
 			$result01 = $conn->query($sql_query01) or die("MySQL query error");
 			while($row01 = mysqli_fetch_array($result01)){
-			    $customer_form_id = $row01["customer_form_id"];
+			    $customer_form_question = $row01["customer_form_question"];
 			    $customer_form_time = $row01["customer_form_time"];
-			    $user_id = $row01["user_id"];
+			    $customer_form_id = $row01["customer_form_id"];
+			    //$user_id = $row01["user_id"];
 			    /*
 			    $buy_add = $row01["buy_add"];
 			    $buy_phone = $row01["buy_phone"];
 			    $buy_money = $row01["buy_money"];
 			     */
-			    
+                /*			    
 			    $sql_query02 = "SELECT * FROM user WHERE user_id='$user_id'";
 			    mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
 			    $result02 = $conn->query($sql_query02) or die("MySQL query error");
@@ -68,23 +74,23 @@
 			        $user_add = $row02['user_add'];
 			        
 			    }
-
+                */
             ?>
             <tr>
-                <td align="center"><?php echo $customer_form_id;?></td>	<!-- 顯示商品id -->
-                <td align="center"><?php echo $customer_form_time;?></td>	<!-- 顯示商品名稱 -->
-                <td align="center"><?php echo $user_name;?></td>	<!-- 顯示商品數量 -->
-                <td align="center"><?php echo $user_phone;?></td>	<!-- 顯示商品價格 -->
-                <td align="center"><?php echo $user_email;?></td>	<!-- 顯示商品描述 -->
-               	<td align="center"><?php echo $user_postcode;?> </td>
-               	<td align="center"><?php echo $user_add;?> </td>
+                <!--  <td align="center"><?php //echo $customer_form_id;?></td>-->	<!-- 顯示商品id -->
+                <td align="center"><?php echo $customer_form_time;?></td>	      <!-- 顯示商品名稱 -->
+                <td align="center"><?php echo $customer_form_question;?></td>	  <!-- 顯示商品數量 -->
+                <!--<td align="center"><?php //echo $user_phone;?></td>-->	     <!-- 顯示商品價格 -->
+                <!--<td align="center"><?php //echo $user_email;?></td>	-->     <!-- 顯示商品描述 -->
+               	<!--<td align="center"><?php //echo $user_postcode;?> </td>-->
+               	<!--<td align="center"><?php //echo $user_add;?> </td>-->
                	<!--  <td align="center"><?php //echo $user_phone;?> </td>-->
 		
                
                 
                 <!--  <td><a href="order_edit.php?buy_id=<?php //echo $buy_id;?>">修改訂單</a></td>-->
                <!-- <td><a href="order_delete.php?buy_id=<?php //echo $buy_id;?>">取消訂單</a></td>-->
-                 <td><a href="customer_management_detail.php?customer_form_id=<?php echo $customer_form_id;?>">問題明細</a></td>               
+                 <td><a href="customer_form_detail.php?customer_form_id=<?php echo $customer_form_id;?>">問題明細</a></td>               
      <!--            <td><label><input type="checkbox"  name="ship_status_id[]" value="<?php //echo $buy_id;?>" <?php //if($ship_status_id == "5") echo("checked")?>> 取消訂單</label>--> 
 				<!--  <input type="hidden" id="buy_id" name="buy_id" value="<?php //echo $buy_id;?>">	</td>-->
             </tr>

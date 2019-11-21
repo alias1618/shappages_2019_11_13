@@ -1,34 +1,26 @@
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	<!--  讓mysql顯示中文而不是亂碼     -->
-</head>
+<script type="text/javascript">
+	function sendmail(){
+			alert('感謝您的來信，我們將盡快答覆你');
+			window.location.href='index.php';
+		}
+</script>
 <?php
+session_start();
 require_once("connect_db.php");
-
 header("Content-Type:text/html; charset=utf-8");
-$customer_answer = $_POST['answer'];
-//echo '$customer_service_answer'.$customer_service_answer.'<br>';
-$user_email=$_POST['user_email'];
-//echo '$user_email'.$user_email.'<br>';
-$user_name=$_POST['user_name'];
-//echo '$user_name'.$user_name.'<br>';
-$customer_form_id=$_POST['customer_form_id'];
-//echo '$customer_form_id'.$customer_form_id.'<br>';
-$user_id=$_POST['user_id'];
-//echo '$user_id'.$user_id.'<br>';
-
-mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
-$sql_insert = "INSERT INTO customer_form_answer(customer_form_answer, user_id, customer_form_id) VALUES ('$customer_answer', '$user_id', '$customer_form_id')";
-$result = $conn->query($sql_insert) or die('MySQL insert error');
-?>
-
-
-<?php   //這封信件是從客服信箱寄到客戶信箱
 require_once('./PHPMailer/PHPMailerAutoload.php');
-//$C_name=$_POST['C_name'];
-//$C_email=$_POST['C_email'];
-//$C_tel=$_POST['C_tel'];
-//$C_message=$_POST['C_message'];
+$C_name=$_POST['C_name'];
+$C_email=$_POST['C_email'];
+$C_tel=$_POST['C_tel'];
+$C_message=$_POST['C_message'];
+$user_id = $_SESSION['user_id'];
+//$user_id = $_POST['user_id'];
+//$time=time();
+$time = (date("Y-m-d H:i:s"));
+$sql_insert = "INSERT INTO customer_form(customer_form_question, customer_form_time, user_id) VALUES ('$C_message','$time','$user_id')";
+$result = $conn->query($sql_insert) or die('MySQL insert error');
+
+
 
 $mail= new PHPMailer();                             //建立新物件
 $mail->SMTPDebug = 0;
@@ -43,15 +35,14 @@ $mail->Password = "Hh20190909!";                 //Gmail密碼
 $mail->From = "alias1620@gmail.com";        //寄件者信箱
 $mail->FromName = "台灣超市客服";                  //寄件者姓名
 $mail->Subject ="顧客來信"; //郵件標題
-$mail->Body = "寄件人".$user_name."(".$user_email.")問題描述:".$answer; //郵件內容
+$mail->Body = "寄件人".$C_name."(".$C_email.") 電話:".$C_tel."問題描述:".$C_message; //郵件內容
 //$mail->addAttachment('../uploadfile/file/dirname.png','new.jpg'); //附件，改以新的檔名寄出
 //$mail->IsHTML(true);                             //郵件內容為html
-$mail->AddAddress($user_email);            //收件者郵件及名稱
+$mail->AddAddress("alias1620@gmail.com");            //收件者郵件及名稱
 if(!$mail->Send()){
     //echo "Error: " ; //.$mail->ErrorInfo
 }else{
-    //echo "<script>sendmail();</script>";
+    echo "<script>sendmail();</script>";
 }
-header("location:customer_form_list.php");
+
 ?>
-</html>

@@ -6,7 +6,7 @@
 require_once("connect_db.php");
 
 header("Content-Type:text/html; charset=utf-8");
-$customer_answer = $_POST['answer'];
+$customer_service_answer = $_POST['answer'];
 //echo '$customer_service_answer'.$customer_service_answer.'<br>';
 $user_email=$_POST['user_email'];
 //echo '$user_email'.$user_email.'<br>';
@@ -18,7 +18,7 @@ $user_id=$_POST['user_id'];
 //echo '$user_id'.$user_id.'<br>';
 
 mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
-$sql_insert = "INSERT INTO customer_form_answer(customer_form_answer, user_id, customer_form_id) VALUES ('$customer_answer', '$user_id', '$customer_form_id')";
+$sql_insert = "INSERT INTO customer_service(customer_service_answer, user_id, customer_form_id) VALUES ('$customer_service_answer', '$user_id', '$customer_form_id')";
 $result = $conn->query($sql_insert) or die('MySQL insert error');
 ?>
 
@@ -52,6 +52,6 @@ if(!$mail->Send()){
 }else{
     //echo "<script>sendmail();</script>";
 }
-header("location:customer_form_list.php");
+header("location:customer_management.php");
 ?>
 </html>

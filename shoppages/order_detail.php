@@ -61,7 +61,8 @@
 				<td>購買數量</td>
 			</tr>  
   		<?php 
-		  require_once("connect_db.php");
+  		include('session_check.php'); 
+		  //require_once("connect_db.php");
 		  header("Content-Type:text/html; charset=utf-8");    //讓mysql顯示中文而不是亂碼
 		  $buy_id = $_REQUEST['buy_id'];
   

@@ -31,7 +31,7 @@
             <a class="nav-link" href="regist.php">會員註冊</a>
           </li>
 	      <li class="nav-item">
-            <a class="nav-link" href="customer_form.php">客服</a>
+            <a class="nav-link" href="customer_form_list.php">客服</a>
           </li>
         </ul>
       </div>

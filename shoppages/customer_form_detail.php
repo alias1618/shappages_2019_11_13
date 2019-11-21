@@ -15,7 +15,7 @@
 </head>
 <body>
 <?php 
-          include("menu_management.php");
+          include("menu.php");
           require_once("connect_db.php");
           header("Content-Type:text/html; charset=utf-8");    //讓mysql顯示中文而不是亂碼
 ?>
@@ -24,14 +24,15 @@
 				<td align="center"></td>
 			<tr>
   		<?php 
-  		    $customer_form_id = $_REQUEST['customer_form_id'];
+  		    $customer_form_id= $_REQUEST['customer_form_id'];
+  		    //$user_id = $_REQUEST['user_id'];
   
             $sql_query02 = "SELECT * FROM customer_form WHERE customer_form_id='$customer_form_id'";
             mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
             $result02 = $conn->query($sql_query02) or die("MySQL query error");
-            $row02 = mysqli_fetch_array($result02);
+            while($row02 = mysqli_fetch_array($result02)){
                 $customer_form_question = $row02["customer_form_question"];
-                //$customer_form_id = $row02['customer_form_id'];
+                $customer_form_id = $row02['customer_form_id'];
                 $user_id = $row02["user_id"];
                 //$product_price = $row02["product_price"];
                 //$buy_number = $row02["buy_number"];
@@ -49,12 +50,6 @@
                 while($row_03 = mysqli_fetch_array($result_03)){
                     $customer_service_answer = $row_03["customer_service_answer"];
                     
-                    $sql_query_04 = "SELECT * FROM customer_form_answer WHERE user_id='$user_id' AND customer_form_id ='$customer_form_id'";
-                    mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
-                    $result_04 = $conn->query($sql_query_04) or die("MySQL query error");
-                    while($row_04 = mysqli_fetch_array($result_04)){
-                        $customer_form_answer = $row_04["customer_form_answer"];
-                    
                 ?>
 
 
@@ -71,29 +66,29 @@
                 <td align="center"><?php //echo $product_price;?> </td>
                 <td align="center"><?php //echo $buy_number;?> </td>
                 -->
-                 <?php 
-                /*
+                <?php 
+            
                 $sql_query_04 = "SELECT * FROM customer_form_answer WHERE user_id='$user_id' AND customer_form_id ='$customer_form_id'";
                 mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
                 $result_04 = $conn->query($sql_query_04) or die("MySQL query error");
                 while($row_04 = mysqli_fetch_array($result_04)){
                     $customer_form_answer = $row_04["customer_form_answer"];
-                 */   
+                    
                 ?>
-                <tr>
+                            <tr>
                 <td align="lift">
                 <?php if(!empty($customer_form_answer)){
                     echo nl2br($customer_form_answer);
                 } //nl2br()
-                //echo 82;
-                ?> </td>
-                </tr>
-                
-                
- <?php      
-             }
                 }
-           
+                ?> </td>
+            </tr>
+                
+                
+                
+ <?php            
+            }
+            }
 ?>	
 			</table>
 			<!--  
@@ -153,7 +148,7 @@
 ?>
 		 <br>
 		 <br>
-		<form action="customer_management_send.php" method="post" align="center" >
+		<form action="customer_form_insert.php" method="post" align="center" >
         <!--<input type="hidden" name="id" value="<?php //echo $user_id?>" />-->
 <!-- align="center" style="vertical-align:bottom;" -->
         <!--  
@@ -179,7 +174,7 @@
 
         	<input id="user_email" name="user_email" type="hidden" value="<?php echo $user_email?>"/></input>
         
-        	<label  >客服回答</label><br>
+        	<label  >顧客回答</label><br>
         	<br>
         	<textarea id="answer" name="answer" rows="6" cols="70" ></textarea>
         	<!--  

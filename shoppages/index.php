@@ -8,7 +8,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
 		<?php 
-		  require_once("connect_db.php");
+		  include('session_check.php');
+		 // require_once("connect_db.php");
 		  header("Content-Type:text/html; charset=utf-8");    //讓mysql顯示中文而不是亂碼
 		?>
   <title>台灣超市</title>
@@ -22,6 +23,7 @@
 </head>
 <body>
     <?php 
+    
     include("menu.php");
     ?>
 

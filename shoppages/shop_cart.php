@@ -18,7 +18,8 @@
 
 <body onLoad="refreshTable()">
 <?php 
-include("menu.php");
+include('menu.php');
+include('session_check.php');
 ?>
   <p align="center">購物車</p>
   <!-- Page Content -->
@@ -40,8 +41,8 @@ include("menu.php");
 
     <?php
     
-    session_start();
-    require_once ('connect_db.php');
+    //session_start();
+    //require_once ('connect_db.php');
     if (!empty($_SESSION['product'])){
         //echo '<pre>';print_r($_SESSION['product']);echo '</pre>';
     }

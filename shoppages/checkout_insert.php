@@ -5,9 +5,10 @@
 </head>
     <body>
 <?php
-session_start();
+include('session_check.php');
+//session_start();
 header("Content-Type:text/html; charset=utf-8");    //讓mysql顯示中文而不是亂碼
-require_once("connect_db.php");  
+//require_once("connect_db.php");  
 //require 'menu.php';
 
 if(!isset($_SESSION['user_id'])){

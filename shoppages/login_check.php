@@ -97,18 +97,18 @@ if (($username != "") && ($password != "")) {
             //echo 97;
             
         }else if($session_id == $db_session_id){    //有登入過而且同樣的session_id
-            $sql_update = "UPDATE login_data SET session_id='$session_id', login_time='$time', user_id='$user_id'";
-            $sql_update_result = $conn->query($sql_update) or die('MySQL update error');
+            $sql_update_01 = "UPDATE login_data SET session_id='$session_id', login_time='$time', user_id='$user_id'";
+            $sql_update_result_01 = $conn->query($sql_update_01) or die('MySQL update error');
             //echo 101;
-        }else if(($session_id != $db_session_id) && (($time - $db_login_time) < 1200)){ //重複登入
+       /* }else if(($session_id != $db_session_id) && (($time - $db_login_time) < 1200)){ //重複登入
              echo "<script>login_two();</script>";
              return;
              header("Location: index.php");
-             
+       */      
              //echo 104;
-        }else if(($session_id != $db_session_id) && (($time - $db_login_time) > 1200)){ //沒有重複登入
-            $sql_insert_02 = "INSERT INTO login_data(session_id, login_time, user_id) VALUES ('$session_id','$time','$user_id')";
-            $sql_insert_result_02 = $conn->query($sql_insert_02) or die('MySQL insert error_99');
+        }else if(($session_id != $db_session_id) ){ //資料庫有帳號和seesion_id 但是和資料庫不一樣
+            $sql_update_02 = "UPDATE login_data SET session_id='$session_id', login_time='$time', user_id='$user_id'";
+            $sql_update_result_02 = $conn->query($sql_update_02) or die('MySQL update error');
             //echo 108;
         }
         //echo 110;

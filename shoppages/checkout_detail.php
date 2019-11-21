@@ -14,8 +14,9 @@
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <?php
 //require 'menu.php';
-session_start();
-require_once("connect_db.php");     
+include('session_check.php');
+//session_start();
+//require_once("connect_db.php");     
 //$productnumber = $_POST['productnumber'];
 $ship_name = $_POST['ship_name'];
 $ship_add = $_POST['ship_add'];
