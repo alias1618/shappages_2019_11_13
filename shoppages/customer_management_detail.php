@@ -12,6 +12,17 @@
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <style type="text/css">
+<!--
+table{
+    border-collapse:separate;
+    collapse;border:1px solid black;
+}
+td{
+    collapse;border:1px solid black;
+}
+-->
+</style>
 </head>
 <body>
 <?php 
@@ -19,9 +30,9 @@
           require_once("connect_db.php");
           header("Content-Type:text/html; charset=utf-8");    //讓mysql顯示中文而不是亂碼
 ?>
-			<table align="center">
+			<table align="center" >
 			<tr>
-				<td align="center"></td>
+				<td align="center">顧客提問</td>
 			<tr>
   		<?php 
   		    $customer_form_id = $_REQUEST['customer_form_id'];
@@ -41,58 +52,33 @@
                 
                 
       	   </tr>
-                <?php 
-            
-                $sql_query_03 = "SELECT * FROM customer_service WHERE user_id='$user_id' AND customer_form_id ='$customer_form_id'";
-                mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
-                $result_03 = $conn->query($sql_query_03) or die("MySQL query error");
-                while($row_03 = mysqli_fetch_array($result_03)){
-                    $customer_service_answer = $row_03["customer_service_answer"];
-                    
+      	   
+                <?php                   
                     $sql_query_04 = "SELECT * FROM customer_form_answer WHERE user_id='$user_id' AND customer_form_id ='$customer_form_id'";
                     mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
                     $result_04 = $conn->query($sql_query_04) or die("MySQL query error");
                     while($row_04 = mysqli_fetch_array($result_04)){
                         $customer_form_answer = $row_04["customer_form_answer"];
+                        $role_id = $row_04["role_id"];
                     
                 ?>
-
-
-            <tr>
-                <td align="right">
-                <?php if(!empty($customer_service_answer)){
-                    echo nl2br($customer_service_answer);
-                } //nl2br()
                 
-                ?> </td>
-            </tr>
-
-                <!--  
-                <td align="center"><?php //echo $product_price;?> </td>
-                <td align="center"><?php //echo $buy_number;?> </td>
-                -->
-                 <?php 
-                /*
-                $sql_query_04 = "SELECT * FROM customer_form_answer WHERE user_id='$user_id' AND customer_form_id ='$customer_form_id'";
-                mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
-                $result_04 = $conn->query($sql_query_04) or die("MySQL query error");
-                while($row_04 = mysqli_fetch_array($result_04)){
-                    $customer_form_answer = $row_04["customer_form_answer"];
-                 */   
-                ?>
-                <tr>
-                <td align="lift">
-                <?php if(!empty($customer_form_answer)){
-                    echo nl2br($customer_form_answer);
-                } //nl2br()
-                //echo 82;
-                ?> </td>
+                <tr border='1'>
+                
+                <?php if($role_id == 1){    //1 是客服     2是顧客
+                    echo "<tr><td align='right'>客服回覆</td></tr>";
+                    echo "<tr><td align='right'>".nl2br($customer_form_answer)."</td></tr>";
+                }else if($role_id == 2){
+                    echo "<tr><td align='left'>顧客回覆</td></tr>";
+                    echo "<tr><td align='left'>".nl2br($customer_form_answer)."</td></tr>";
+                }
+                ?> 
                 </tr>
                 
                 
  <?php      
              }
-                }
+                
            
 ?>	
 			</table>

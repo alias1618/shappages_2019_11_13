@@ -16,9 +16,9 @@ $customer_form_id=$_POST['customer_form_id'];
 //echo '$customer_form_id'.$customer_form_id.'<br>';
 $user_id=$_POST['user_id'];
 //echo '$user_id'.$user_id.'<br>';
-
+$role_id = 2;
 mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
-$sql_insert = "INSERT INTO customer_form_answer(customer_form_answer, user_id, customer_form_id) VALUES ('$customer_answer', '$user_id', '$customer_form_id')";
+$sql_insert = "INSERT INTO customer_form_answer(customer_form_answer, user_id, customer_form_id, role_id) VALUES ('$customer_answer', '$user_id', '$customer_form_id', '$role_id')";
 $result = $conn->query($sql_insert) or die('MySQL insert error');
 ?>
 

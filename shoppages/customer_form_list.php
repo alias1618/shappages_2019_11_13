@@ -23,6 +23,7 @@
 		  header("Content-Type:text/html; charset=utf-8");    //讓mysql顯示中文而不是亂碼
 		  $user_id = $_SESSION['user_id'];
 		?>
+		<input type="button" value="提出問題" onclick="location.href='customer_form_new.php'">
 		<br>
 		<table border="1">
 			<tr>
