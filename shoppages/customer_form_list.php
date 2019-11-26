@@ -76,6 +76,7 @@
 			        
 			    }
                 */
+			    if(($customer_form_question) != 99){
             ?>
             <tr>
                 <!--  <td align="center"><?php //echo $customer_form_id;?></td>-->	<!-- 顯示商品id -->
@@ -95,7 +96,9 @@
      <!--            <td><label><input type="checkbox"  name="ship_status_id[]" value="<?php //echo $buy_id;?>" <?php //if($ship_status_id == "5") echo("checked")?>> 取消訂單</label>--> 
 				<!--  <input type="hidden" id="buy_id" name="buy_id" value="<?php //echo $buy_id;?>">	</td>-->
             </tr>
-            <?php }?>
+            <?php 
+			    }
+			}?>
 		</table>
 		</form>
   <!-- Page Content -->

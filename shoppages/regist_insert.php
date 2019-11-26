@@ -62,7 +62,7 @@
             
             //header('location:index.php');  //回index 
             echo "成功";
-            
+            //直接登入
             $sql_query02 = "SELECT * FROM user WHERE user_account='$account' AND user_email='$email' AND user_name='$name'";
             $result02 = $conn->query($sql_query02);
             $row02 = mysqli_fetch_array($result02);

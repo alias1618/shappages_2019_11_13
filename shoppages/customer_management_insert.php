@@ -7,7 +7,7 @@ require_once("connect_db.php");
 
 header("Content-Type:text/html; charset=utf-8");
 $customer_answer = $_POST['answer'];
-//echo '$customer_answer'.$customer_answer.'<br>';
+//echo '$customer_service_answer'.$customer_service_answer.'<br>';
 $user_email=$_POST['user_email'];
 //echo '$user_email'.$user_email.'<br>';
 $user_name=$_POST['user_name'];
@@ -17,13 +17,13 @@ $customer_form_id=$_POST['customer_form_id'];
 $user_id=$_POST['user_id'];
 //echo '$user_id'.$user_id.'<br>';
 $customer_form_question = 99;
-$role_id = 2;
+$role_id = 1;
+
 $time = (date("Y-m-d H:i:s"));
 mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
 $sql_insert = "INSERT INTO customer_form(customer_form_answer, user_id, role_id, customer_form_time, customer_form_answer_id, customer_form_question) VALUES ('$customer_answer', '$user_id', '$role_id', '$time', '$customer_form_id', '$customer_form_question')";
 $result = $conn->query($sql_insert) or die('MySQL insert error');
 ?>
-
 
 <?php   //這封信件是從客服信箱寄到客戶信箱
 require_once('./PHPMailer/PHPMailerAutoload.php');
@@ -45,7 +45,7 @@ $mail->Password = "Hh20190909!";                 //Gmail密碼
 $mail->From = "alias1620@gmail.com";        //寄件者信箱
 $mail->FromName = "台灣超市客服";                  //寄件者姓名
 $mail->Subject ="顧客來信"; //郵件標題
-$mail->Body = "寄件人".$user_name."(".$user_email.")問題描述:".$customer_answer; //郵件內容
+$mail->Body = "寄件人".$user_name."(".$user_email.")問題描述:".$answer; //郵件內容
 //$mail->addAttachment('../uploadfile/file/dirname.png','new.jpg'); //附件，改以新的檔名寄出
 //$mail->IsHTML(true);                             //郵件內容為html
 $mail->AddAddress($user_email);            //收件者郵件及名稱
@@ -54,8 +54,8 @@ if(!$mail->Send()){
 }else{
     //echo "<script>sendmail();</script>";
 }
-
-$url="customer_form_detail.php?customer_form_id=$customer_form_id;";
+//header("location:customer_management.php");
+$url="customer_management_detail.php?customer_form_id=$customer_form_id;";
 header("location:".$url);
 ?>
 </html>

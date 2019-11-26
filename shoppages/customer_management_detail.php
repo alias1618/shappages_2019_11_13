@@ -19,7 +19,7 @@ table{
     collapse;border:1px solid black;
 }
 td{
-    collapse;border:1px solid black;
+    collapse;border:3px solid black;
 }
 -->
 </style>
@@ -37,47 +37,56 @@ td{
   		<?php 
   		    $customer_form_id = $_REQUEST['customer_form_id'];
   
-            $sql_query02 = "SELECT * FROM customer_form WHERE customer_form_id='$customer_form_id'";
+            $sql_query02 = "SELECT * FROM customer_form WHERE customer_form_id='$customer_form_id' OR customer_form_answer_id='$customer_form_id'";
             mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
             $result02 = $conn->query($sql_query02) or die("MySQL query error");
-            $row02 = mysqli_fetch_array($result02);
+            while($row02 = mysqli_fetch_array($result02)){
                 $customer_form_question = $row02["customer_form_question"];
                 //$customer_form_id = $row02['customer_form_id'];
                 $user_id = $row02["user_id"];
                 //$product_price = $row02["product_price"];
                 //$buy_number = $row02["buy_number"];
-                ?>
-               <tr>
-                <td align="center"><?php echo nl2br($customer_form_question);?> </td>
+                $user_id = $row02["user_id"];
+                $role_id = $row02["role_id"];
+                $customer_form_answer_id = $row02['customer_form_answer_id'];
+                $customer_form_answer = $row02['customer_form_answer'];
+                if(($customer_form_question) != 99){
+                    ?>
                 
+               	<tr>
+                <td align="center"><?php echo nl2br($customer_form_question);?> </td>                            
+      	   		</tr>
+      	   		<?php }?>
+      	   	<tr>
+              <?php if (($customer_form_answer) != 99){
+                        if($role_id == 1){    //1 是客服     2是顧客
+                            //echo "<tr><td align='right'>客服回覆</td></tr>";
+                            echo "<tr><td align='right'><b>客服回覆</b><br>".nl2br($customer_form_answer)."</td></tr>";
+                        }else if($role_id == 2){
+                            //echo "<tr><td align='left'>顧客回覆</td></tr>";
+                            echo "<tr><td align='left'><b>顧客回覆</b><br>".nl2br($customer_form_answer)."</td></tr>";
+                        }
+                    }
+               }
+            ?>
                 
-      	   </tr>
-      	   
-                <?php                   
-                    $sql_query_04 = "SELECT * FROM customer_form_answer WHERE user_id='$user_id' AND customer_form_id ='$customer_form_id'";
-                    mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
-                    $result_04 = $conn->query($sql_query_04) or die("MySQL query error");
-                    while($row_04 = mysqli_fetch_array($result_04)){
-                        $customer_form_answer = $row_04["customer_form_answer"];
-                        $role_id = $row_04["role_id"];
-                    
-                ?>
+               <!--   <tr border='1'>-->
                 
-                <tr border='1'>
-                
-                <?php if($role_id == 1){    //1 是客服     2是顧客
+                <?php   /* 
+                if($role_id == 1){    //1 是客服     2是顧客
                     echo "<tr><td align='right'>客服回覆</td></tr>";
                     echo "<tr><td align='right'>".nl2br($customer_form_answer)."</td></tr>";
                 }else if($role_id == 2){
                     echo "<tr><td align='left'>顧客回覆</td></tr>";
                     echo "<tr><td align='left'>".nl2br($customer_form_answer)."</td></tr>";
                 }
+                */
                 ?> 
-                </tr>
+               <!-- </tr>-->
                 
                 
  <?php      
-             }
+             //}
                 
            
 ?>	
@@ -139,7 +148,7 @@ td{
 ?>
 		 <br>
 		 <br>
-		<form action="customer_management_send.php" method="post" align="center" >
+		<form action="customer_management_insert.php" method="post" align="center" >
         <!--<input type="hidden" name="id" value="<?php //echo $user_id?>" />-->
 <!-- align="center" style="vertical-align:bottom;" -->
         <!--  

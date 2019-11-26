@@ -46,7 +46,7 @@ $user_id = $_SESSION['user_id'];
     </div>
   </div>
  
-        <form action="send_new.php" method="post" >
+        <form action="customer_form_new_insert.php" method="post" >
         <input type="hidden" name="id" value="<?php echo $user_id?>" />
         <div align="center">
         	<!--  

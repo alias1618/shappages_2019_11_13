@@ -50,6 +50,7 @@
 			while($row01 = mysqli_fetch_array($result01)){
 			    $customer_form_id = $row01["customer_form_id"];
 			    $customer_form_time = $row01["customer_form_time"];
+			    $customer_form_question = $row01["customer_form_question"];
 			    $user_id = $row01["user_id"];
 			    /*
 			    $buy_add = $row01["buy_add"];
@@ -68,7 +69,7 @@
 			        $user_add = $row02['user_add'];
 			        
 			    }
-
+			    if (($customer_form_question != 99)){
             ?>
             <tr>
                 <td align="center"><?php echo $customer_form_id;?></td>	<!-- 顯示商品id -->
@@ -88,7 +89,9 @@
      <!--            <td><label><input type="checkbox"  name="ship_status_id[]" value="<?php //echo $buy_id;?>" <?php //if($ship_status_id == "5") echo("checked")?>> 取消訂單</label>--> 
 				<!--  <input type="hidden" id="buy_id" name="buy_id" value="<?php //echo $buy_id;?>">	</td>-->
             </tr>
-            <?php }?>
+            <?php 
+			    }
+			    }?>
 		</table>
 		</form>
   <!-- Page Content -->
