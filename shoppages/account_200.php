@@ -1,8 +1,9 @@
 <?php
 require_once("connect_db.php");
 header("Content-Type:text/html; charset=utf-8");    //讓mysql顯示中文而不是亂碼
+$account_number = 10;
 
-//for ($i = 0; $i < 200; $i++) {
+//for ($z=0;$z<$account_number;$z++) {
     
 
     include('create_account.php');
@@ -28,6 +29,10 @@ header("Content-Type:text/html; charset=utf-8");    //讓mysql顯示中文而不
     '$user_add', '$role_id', '$user_postcode')";
     mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
     $result = $conn->query($sql_insert) or die('MySQL insert error');
+    
 
 //}
+
+header('location:index.php');
+//exit;
 ?>

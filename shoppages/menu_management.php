@@ -32,6 +32,9 @@
           </li>
 	        <li class="nav-item">
             <a class="nav-link" href="regist.php">會員註冊</a>
+           </li>
+	        <li class="nav-item">
+            <a class="nav-link" href="management_report.php">報表管理系統</a>
           </li>
         </ul>
       </div>
