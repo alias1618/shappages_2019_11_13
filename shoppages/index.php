@@ -53,7 +53,10 @@
              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
           </ol>
                     <div class="carousel-inner" role="listbox">
-          		<?php 
+              <?php 
+//找出問題
+              ini_set('display_errors', 1);
+//找出問題
           		$counter=0;
     		$sql_query03 = "SELECT * FROM product WHERE product_category_id = 1 AND product_status_id != 3 ORDER BY RAND() LIMIT 10 ";
     		$result03 = $conn->query($sql_query03) or die("MySQL query error135");
